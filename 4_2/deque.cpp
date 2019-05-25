@@ -19,15 +19,15 @@ deque<T>::deque()
 template <typename T>
 deque<T>::~deque()
 {
-	if (head) // если указатель не нулевой
+	if (head) // РµСЃР»Рё СѓРєР°Р·Р°С‚РµР»СЊ РЅРµ РЅСѓР»РµРІРѕР№
 	{
-		El<T>* current = head->getLink(); // то получаем его указатель на след элемент
+		El<T>* current = head->getLink(); // С‚Рѕ РїРѕР»СѓС‡Р°РµРј РµРіРѕ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґ СЌР»РµРјРµРЅС‚
 		El<T>* buf;
-		delete head; //удаляем первый элемент
-		while (current) // проходимся циклом пока элементы не закончатся
+		delete head; //СѓРґР°Р»СЏРµРј РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
+		while (current) // РїСЂРѕС…РѕРґРёРјСЃСЏ С†РёРєР»РѕРј РїРѕРєР° СЌР»РµРјРµРЅС‚С‹ РЅРµ Р·Р°РєРѕРЅС‡Р°С‚СЃСЏ
 		{
-			buf = current->getLink(); // сдвигаем указатель
-			delete current; // и удаляем элементы
+			buf = current->getLink(); // СЃРґРІРёРіР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ
+			delete current; // Рё СѓРґР°Р»СЏРµРј СЌР»РµРјРµРЅС‚С‹
 			current = buf;
 		}
 	}
@@ -37,25 +37,25 @@ deque<T>::~deque()
 template<typename T>
 deque<T>::deque(deque<T>& op2)
 {
-	if (!op2.size) // проверка на пустоту
+	if (!op2.size) // РїСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚РѕС‚Сѓ
 	{
-		cout << "Объект пуст" << endl;
+		cout << "РћР±СЉРµРєС‚ РїСѓСЃС‚" << endl;
 		system("pause");
 	}
-	size = op2.size; // копируем количесво элементов
-	El<T>* current = op2.getHead(); //получем указатель на первый элемент
-	El<T>* ptr = new El<T>; // выделяем память под элемент
-	ptr->setData(current->getData()); //копируем туда данные из первого элемента копируемого дека
-	setHead(ptr); //устанавливаем этот элемент как первый в деке
-	current = current->getLink(); // сдвигаем указатель
-	while (current != nullptr) //далее все тоже самое пока не скопируем все элементы
+	size = op2.size; // РєРѕРїРёСЂСѓРµРј РєРѕР»РёС‡РµСЃРІРѕ СЌР»РµРјРµРЅС‚РѕРІ
+	El<T>* current = op2.getHead(); //РїРѕР»СѓС‡РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
+	El<T>* ptr = new El<T>; // РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РїРѕРґ СЌР»РµРјРµРЅС‚
+	ptr->setData(current->getData()); //РєРѕРїРёСЂСѓРµРј С‚СѓРґР° РґР°РЅРЅС‹Рµ РёР· РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РєРѕРїРёСЂСѓРµРјРѕРіРѕ РґРµРєР°
+	setHead(ptr); //СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЌС‚РѕС‚ СЌР»РµРјРµРЅС‚ РєР°Рє РїРµСЂРІС‹Р№ РІ РґРµРєРµ
+	current = current->getLink(); // СЃРґРІРёРіР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ
+	while (current != nullptr) //РґР°Р»РµРµ РІСЃРµ С‚РѕР¶Рµ СЃР°РјРѕРµ РїРѕРєР° РЅРµ СЃРєРѕРїРёСЂСѓРµРј РІСЃРµ СЌР»РµРјРµРЅС‚С‹
 	{
 		ptr->setLink(new El<T>);
 		ptr = ptr->getLink();
 		ptr->setData(current->getData());
 		current = current->getLink();
 	}
-	setTail(ptr); //указатель на последний элемент запоминаем как tail
+	setTail(ptr); //СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ Р·Р°РїРѕРјРёРЅР°РµРј РєР°Рє tail
 }
 
 template<typename T>
@@ -92,29 +92,29 @@ template <typename T>
 deque<T>& deque<T>::operator-(int)
 {
 	El<T>* ptr = nullptr;
-	switch (size) //если размер 0, то он пуст
+	switch (size) //РµСЃР»Рё СЂР°Р·РјРµСЂ 0, С‚Рѕ РѕРЅ РїСѓСЃС‚
 	{
 	case 0:
-		cout << "Дек пустой" << endl;
+		cout << "Р”РµРє РїСѓСЃС‚РѕР№" << endl;
 		break;
-	case 1: // если 1, то мы его и удаляем
+	case 1: // РµСЃР»Рё 1, С‚Рѕ РјС‹ РµРіРѕ Рё СѓРґР°Р»СЏРµРј
 		delete head;
 		head = nullptr;
 		tail = nullptr;
-		cout << "Элемент успешно извлечен" << endl;
+		cout << "Р­Р»РµРјРµРЅС‚ СѓСЃРїРµС€РЅРѕ РёР·РІР»РµС‡РµРЅ" << endl;
 		break;
 		sizeEdit(-1);
-	default: // Если любой другой, то удаляем последний
+	default: // Р•СЃР»Рё Р»СЋР±РѕР№ РґСЂСѓРіРѕР№, С‚Рѕ СѓРґР°Р»СЏРµРј РїРѕСЃР»РµРґРЅРёР№
 		ptr = head;
-		while (ptr->getLink() != tail) //проходимся по деку, пока не находим предпоследний
+		while (ptr->getLink() != tail) //РїСЂРѕС…РѕРґРёРјСЃСЏ РїРѕ РґРµРєСѓ, РїРѕРєР° РЅРµ РЅР°С…РѕРґРёРј РїСЂРµРґРїРѕСЃР»РµРґРЅРёР№
 		{
 			ptr = ptr->getLink();
 		}
-		delete tail; //удаляем последний
-		tail = ptr; // И запоминаем бывший предпоследний как последний :)
+		delete tail; //СѓРґР°Р»СЏРµРј РїРѕСЃР»РµРґРЅРёР№
+		tail = ptr; // Р Р·Р°РїРѕРјРёРЅР°РµРј Р±С‹РІС€РёР№ РїСЂРµРґРїРѕСЃР»РµРґРЅРёР№ РєР°Рє РїРѕСЃР»РµРґРЅРёР№ :)
 		tail->setLink(NULL);
-		cout << "Элемент успешно извлечен" << endl;
-		sizeEdit(-1); // уменьшаем количество элементов на 1
+		cout << "Р­Р»РµРјРµРЅС‚ СѓСЃРїРµС€РЅРѕ РёР·РІР»РµС‡РµРЅ" << endl;
+		sizeEdit(-1); // СѓРјРµРЅСЊС€Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РЅР° 1
 		break;
 	}
 	return *this;
@@ -126,7 +126,7 @@ deque<T>& deque<T>::operator+(const deque<T>& op2)
 	deque<T>* temp = new deque<T>;
 	if (!size || !op2.size)
 	{
-		cout << "Объект пуст" << endl;
+		cout << "РћР±СЉРµРєС‚ РїСѓСЃС‚" << endl;
 		system("pause");
 		return *this;
 	}
@@ -151,7 +151,7 @@ deque<T>& deque<T>::operator+(const deque<T>& op2)
 		ptr->setData(current->getData());
 		current = current->getLink();
 	}
-	cout << "Деки успешно объеденены" << endl;
+	cout << "Р”РµРєРё СѓСЃРїРµС€РЅРѕ РѕР±СЉРµРґРµРЅРµРЅС‹" << endl;
 	system("pause");
 	temp->setTail(ptr);
 	return *temp;
@@ -162,7 +162,7 @@ deque<T>& deque<T>::operator=(deque<T>& op2)
 {
 	if (!op2.size)
 	{
-		cout << "Объект пуст" << endl;
+		cout << "РћР±СЉРµРєС‚ РїСѓСЃС‚" << endl;
 		system("pause");
 		return *this;
 	}
@@ -192,11 +192,11 @@ bool deque<T>::operator<(deque<T>& op2)
 	{
 		if (ptr1->getData() > ptr2->getData()) 
 		{
-			cout << "В первом деке число под номером " << i + 1 << " больше чем в во втором деке" << endl;
+			cout << "Р’ РїРµСЂРІРѕРј РґРµРєРµ С‡РёСЃР»Рѕ РїРѕРґ РЅРѕРјРµСЂРѕРј " << i + 1 << " Р±РѕР»СЊС€Рµ С‡РµРј РІ РІРѕ РІС‚РѕСЂРѕРј РґРµРєРµ" << endl;
 			return true;
 		}
 	}
-	cout << "Все числа во втором деке больше чем в первом" << endl;
+	cout << "Р’СЃРµ С‡РёСЃР»Р° РІРѕ РІС‚РѕСЂРѕРј РґРµРєРµ Р±РѕР»СЊС€Рµ С‡РµРј РІ РїРµСЂРІРѕРј" << endl;
 	return false;
 }
 
@@ -206,10 +206,10 @@ ostream& operator<<(ostream& stream, deque<T>& op2)
 
 	El<T>* ptr = op2.getHead();
 	if (!ptr)
-		stream << "Объект: пуст";
+		stream << "РћР±СЉРµРєС‚: РїСѓСЃС‚";
 	else
 	{
-		stream << "Объект: ";
+		stream << "РћР±СЉРµРєС‚: ";
 		while (ptr)
 		{
 			stream << ptr->getData() << " ";
@@ -224,7 +224,7 @@ template <typename T>
 istream& operator >>(istream& stream, deque<T>& op2)
 {
 	T buf;
-	cout << "Введите число >> ";
+	cout << "Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ >> ";
 	El<T>* ptr = op2.getTail();
 	if (!op2.getHead())
 	{

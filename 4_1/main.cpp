@@ -4,7 +4,7 @@
 #include <string>
 
 using namespace std;
-// вывод массива
+// РІС‹РІРѕРґ РјР°СЃСЃРёРІР°
 template <typename T> 
 void show(T* ptr, int size) {
 	for (int i = 0; i < size; i++) {
@@ -16,14 +16,14 @@ void show(T* ptr, int size) {
 template <typename T>
 float avVal(T* ptr, int size)
 {
-	cout << "Исходный массив: ";
+	cout << "РСЃС…РѕРґРЅС‹Р№ РјР°СЃСЃРёРІ: ";
 	show(ptr, size);
 	float sr = 0.0;
 	for (int i = 0; i < size; i++)
 	{
 		sr += (float)ptr[i];
 	}
-	cout << "Среднее значение: " << sr/size << endl;
+	cout << "РЎСЂРµРґРЅРµРµ Р·РЅР°С‡РµРЅРёРµ: " << sr/size << endl;
 	return sr/size;
 }
 
@@ -48,19 +48,19 @@ int main() {
 	int value;
 	while (true) {
 		system("cls");
-		cout << "Меню выбора типа:" << endl
+		cout << "РњРµРЅСЋ РІС‹Р±РѕСЂР° С‚РёРїР°:" << endl
 		 << "1. int" << endl
 		 << "2. char" << endl
 		 << "3. float" << endl
 		 << "4. double" << endl
-		 << "0. Выход" << endl
-		 << "Ваш выбор: ";
+		 << "0. Р’С‹С…РѕРґ" << endl
+		 << "Р’Р°С€ РІС‹Р±РѕСЂ: ";
 		cin >> value;
 		try
 		{
 			if (!(value >= 0 && value <= 4))
 			{
-				throw "Ошибка: Не верный выбор в меню";
+				throw "РћС€РёР±РєР°: РќРµ РІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ РІ РјРµРЅСЋ";
 			}
 		}
 		catch (const char *i)
